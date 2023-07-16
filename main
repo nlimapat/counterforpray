@@ -1,0 +1,51 @@
+from tkinter import *
+
+# Initialize counters
+male_child_count = 0
+female_child_count = 0
+male_juvenile_count = 0
+female_juvenile_count = 0
+male_adult_count = 0
+female_adult_count = 0
+
+# Button click event handler
+def increment_counter(category):
+    global male_child_count, female_child_count, male_juvenile_count, female_juvenile_count, male_adult_count, female_adult_count
+
+    # Increment the respective counter
+    if category == "Male Child":
+        male_child_count += 1
+    elif category == "Female Child":
+        female_child_count += 1
+    elif category == "Male Juvenile":
+        male_juvenile_count += 1
+    elif category == "Female Juvenile":
+        female_juvenile_count += 1
+    elif category == "Male Adult":
+        male_adult_count += 1
+    elif category == "Female Adult":
+        female_adult_count += 1
+
+    # Update the summary label
+    summary_label.config(text=f"Summary:\n\nMale Child: {male_child_count}\nFemale Child: {female_child_count}\nMale Juvenile: {male_juvenile_count}\nFemale Juvenile: {female_juvenile_count}\nMale Adult: {male_adult_count}\nFemale Adult: {female_adult_count}")
+
+# Create the GUI window
+window = Tk()
+window.title("Category Counter")
+
+# Create buttons for each category
+buttons_frame = Frame(window)
+buttons_frame.pack(pady=10)
+
+categories = ["Male Child", "Female Child", "Male Juvenile", "Female Juvenile", "Male Adult", "Female Adult"]
+
+for category in categories:
+    button = Button(buttons_frame, text=category, padx=10, pady=5, command=lambda category=category: increment_counter(category))
+    button.pack(side=LEFT, padx=5)
+
+# Create a label for the summary
+summary_label = Label(window, text="Summary:\n\nMale Child: 0\nFemale Child: 0\nMale Juvenile: 0\nFemale Juvenile: 0\nMale Adult: 0\nFemale Adult: 0")
+summary_label.pack(pady=10)
+
+# Start the GUI event loop
+window.mainloop()
